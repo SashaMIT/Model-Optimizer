@@ -253,8 +253,8 @@ def disable_compilation(model):
     else:
         raise ValueError("Model does not have a model or language_model attribute")
 
-    # Models without vLLM's torch.compile decorator (e.g. the sparse-attention DeepSeek/GLM
-    # models, which use breakable CUDA graphs instead) have nothing to disable.
+    # Models without vLLM's torch.compile decorator (e.g. GLM-5.3-Flash, which uses breakable
+    # CUDA graphs instead) have nothing to disable.
     if not hasattr(inner, "do_not_compile"):
         yield
         return
